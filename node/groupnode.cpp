@@ -203,6 +203,9 @@ bool GroupNode::composeWithPrevious(DieGroup previous, qint64 first, qint64 curr
     return found;
 }
 
+#include <list>
+#include <algorithm>
+
 QList<DieGroup> GroupNode::getGroup(DieGroup values)
 {
     auto first = values.takeFirst();
@@ -220,11 +223,13 @@ QList<DieGroup> GroupNode::getGroup(DieGroup values)
     }
     else
     {
-        DieGroup::reverse_iterator it = values.rbegin();
+	auto x = std::list<qint64>();
+	std::copy(std::begin(values), std::end(values), std::begin(x));
+        auto it = x.crbegin();
         bool foundPerfect = false;
         qint64 cumuledValue = 0;
         DieGroup previousValue;
-        while((values.rend() != it) && !foundPerfect)
+        while((x.rend() != it) && !foundPerfect)
         {
             if(first+*it == m_groupValue)
             {

@@ -33,7 +33,6 @@ ADD_DEFINITIONS(
 )
 
 set(dice_RESOURCES diceparser.qrc)
-FIND_PACKAGE(Qt5LinguistTools)
    
 
 IF(UPDATE_TRANSLATIONS)
@@ -52,7 +51,6 @@ if(Qt5Core_FOUND)
 		MESSAGE(status  "find" ${dice_TS} ${translate_SRCS} )
         QT5_CREATE_TRANSLATION(dice_QM ${translate_SRCS} ${dice_TS})
     ELSE()
-        QT5_ADD_TRANSLATION(dice_QM ${dice_TS})
     ENDIF()
 
     QT5_ADD_RESOURCES(dice_RESOURCES_RCC ${dice_RESOURCES})
