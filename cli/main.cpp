@@ -49,7 +49,6 @@
 QTextStream out(stdout, QIODevice::WriteOnly);
 bool markdown = false;
 enum EXPORTFORMAT {TERMINAL, SVG, IMAGE, MARKDOWN, JSON, BOT};
-int returnValue = 0;
 
 
 QString diceToMarkdown(QJsonArray array,bool withColor,bool allSameColor,bool allSameFaceCount )
@@ -404,10 +403,9 @@ int main(int argc, char *argv[])
     {
         aliasstr = optionParser.value(alias);
     }
-    returnValue = startDiceParsing(cmdList,dotFileStr,colorb,format);
     if(optionParser.isSet(help))
     {
         out << optionParser.helpText();
     }
-    return returnValue;
+    return startDiceParsing(cmdList,dotFileStr,colorb,format);
 }
