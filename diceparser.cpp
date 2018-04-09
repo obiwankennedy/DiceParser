@@ -311,7 +311,8 @@ QString DiceParser::displayResult()
         Result* result=next->getResult();
 
         QString totalValue("you got %1 ;");
-        QString dieValue("D%1 : {%2} ");
+		// can be there
+        QString dieValue("D%1 : #{%2}# ");
 
         bool scalarDone=false;
         while(nullptr!=result)

@@ -247,14 +247,20 @@ int startDiceParsing(QStringList& cmds,QString& treeFile,bool withColor, EXPORTF
                 bool ok;
                 QStringList allStringlist = parser.getAllStringResult(ok);
                 QString stringResult = allStringlist.join(" ; ");
+				// fixme: change semantic of %1
                 stringResult.replace("%1",scalarText);
+				// fixme: change semantic of %3
                 stringResult.replace("%3",lastScalarText);
 
                 int i = 1;
                 for(auto value : strLst)
                 {
-                    stringResult.replace(QStringLiteral("$%1").arg(i),value);
-                    ++i;
+					// todo: check that this block is effectivly replacing the $i variable
+					if (i < strLst.size())
+					{
+						stringResult.replace(QStringLiteral("$%1").arg(i),value);
+						++i;
+					}
                 }
 
                 resultStr = stringResult;

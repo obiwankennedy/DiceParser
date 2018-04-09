@@ -147,7 +147,7 @@ void DiceRoller::start()
                 QStringList allStringlist = m_diceparser.getAllStringResult(ok);
                 QString stringResult = allStringlist.join(" ; ");
                 stringResult.replace("%1",scalarText);
-                stringResult.replace("%2",diceText.trimmed());
+                stringResult.replace(" - %2 -",diceText.trimmed());
                 str = stringResult;
             }
             else
